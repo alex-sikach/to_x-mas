@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&family=M+PLUS+1+Code:wght@100&display=swap');
+		:root {
+			--pink: #f5624e;
+			--gray: rgb(255, 255, 255);
+			--red: #cc231e;
+			--lightgreen: hsl(143, 100%, 75%);
+			--darkgreen: #0f8a5e;
+			--blue: #235e6e;
+		}
+
+		* {
+			margin: 0;
+			padding: 0;
+			position: relative;
+		}
+
+		body {
+			min-height: 100vh;
+			background: var(--blue);
+		}
+
+		.wrapper {
+			position: absolute;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+		}
+
+		.header {
+			position: absolute;
+			color: var(--lightgreen);
+			text-shadow: 1px 1px 10px var(--red), -1px -1px 10px hsl(143, 30%, 45%);
+			left: 50%;
+			top: 20%;
+			transform: translateX(-50%);
+			width: max-content;
+			height: max-content;
+			font-size: 75px;
+		}
+
+		.wrapper>* {
+			font-size: 5em;
+			margin: 10px;
+			width: 200px;
+			height: 150px;
+			overflow: hidden;
+			border-radius: 15px 25px 35px 45px;
+		}
+
+		.line {
+			display: flex;
+			flex-direction: column;
+			width: 200px;
+			/* wrapper > *.min-width */
+			height: max-content;
+			font-size: 20px;
+			transition: top .7s linear;
+			background: linear-gradient(hsl(7, 89%, 67%), hsl(7, 79%, 50%));
+		}
+
+		.sec-line {
+			font-size: 18px;
+		}
+
+		.el {
+			width: 200px;
+			height: 150px;
+			/* background: var(--pink); */
+		}
+
+		.el-txt {
+			width: max-content;
+			height: max-content;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			color: #fff;
+			font-weight: 300;
+			font-family: 'M PLUS 1 Code', sans-serif;
+		}
+
+		.snowflake {
+			color: #fff;
+			font-size: 2em;
+			font-family: Arial, sans-serif;
+			text-shadow: 0 0 5px #000;
+		}
+
+		.bottom {
+			position: fixed;
+			bottom: 0;
+			background: linear-gradient(#fff, rgb(128, 128, 128));
+			width: 100%;
+			height: 50px;
+			z-index: 9999999;
+		}
+
+		@-webkit-keyframes snowflakes-fall {
+			0% {
+				top: -10%
+			}
+			100% {
+				top: 100%
+			}
+		}
+
+		@-webkit-keyframes snowflakes-shake {
+			0%,
+			100% {
+				-webkit-transform: translateX(0);
+				transform: translateX(0)
+			}
+			50% {
+				-webkit-transform: translateX(80px);
+				transform: translateX(80px)
+			}
+		}
+
+		@keyframes snowflakes-fall {
+			0% {
+				top: -10%
+			}
+			100% {
+				top: 100%
+			}
+		}
+
+		@keyframes snowflakes-shake {
+			0%,
+			100% {
+				transform: translateX(0)
+			}
+			50% {
+				transform: translateX(80px)
+			}
+		}
+
+		.snowflake {
+			position: fixed;
+			top: -10%;
+			z-index: 9999;
+			-webkit-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
+			cursor: default;
+			-webkit-animation-name: snowflakes-fall, snowflakes-shake;
+			-webkit-animation-duration: 10s, 3s;
+			-webkit-animation-timing-function: linear, ease-in-out;
+			-webkit-animation-iteration-count: infinite, infinite;
+			-webkit-animation-play-state: running, running;
+			animation-name: snowflakes-fall, snowflakes-shake;
+			animation-duration: 10s, 3s;
+			animation-timing-function: linear, ease-in-out;
+			animation-iteration-count: infinite, infinite;
+			animation-play-state: running, running
+		}
+
+		.snowflake:nth-of-type(0) {
+			left: 1%;
+			-webkit-animation-delay: 0s, 0s;
+			animation-delay: 0s, 0s
+		}
+
+		.snowflake:nth-of-type(1) {
+			left: 10%;
+			-webkit-animation-delay: 1s, 1s;
+			animation-delay: 1s, 1s
+		}
+
+		.snowflake:nth-of-type(2) {
+			left: 20%;
+			-webkit-animation-delay: 6s, .5s;
+			animation-delay: 6s, .5s
+		}
+
+		.snowflake:nth-of-type(3) {
+			left: 30%;
+			-webkit-animation-delay: 4s, 2s;
+			animation-delay: 4s, 2s
+		}
+
+		.snowflake:nth-of-type(4) {
+			left: 40%;
+			-webkit-animation-delay: 2s, 2s;
+			animation-delay: 2s, 2s
+		}
+
+		.snowflake:nth-of-type(5) {
+			left: 50%;
+			-webkit-animation-delay: 8s, 3s;
+			animation-delay: 8s, 3s
+		}
+
+		.snowflake:nth-of-type(6) {
+			left: 60%;
+			-webkit-animation-delay: 6s, 2s;
+			animation-delay: 6s, 2s
+		}
+
+		.snowflake:nth-of-type(7) {
+			left: 70%;
+			-webkit-animation-delay: 2.5s, 1s;
+			animation-delay: 2.5s, 1s
+		}
+
+		.snowflake:nth-of-type(8) {
+			left: 80%;
+			-webkit-animation-delay: 1s, 0s;
+			animation-delay: 1s, 0s
+		}
+
+		.snowflake:nth-of-type(9) {
+			left: 90%;
+			-webkit-animation-delay: 3s, 1.5s;
+			animation-delay: 3s, 1.5s
+		}
+
+		.snowflake:nth-of-type(10) {
+			left: 25%;
+			-webkit-animation-delay: 2s, 0s;
+			animation-delay: 2s, 0s
+		}
+
+		.snowflake:nth-of-type(11) {
+			left: 65%;
+			-webkit-animation-delay: 4s, 2.5s;
+			animation-delay: 4s, 2.5s
+		}
+	</style>
+</head>
+<body>
+	<h1 class="header">До Нового Года осталось:</h1>
+	<div class="wrapper">
+		<div class="days">
+			<div class="days-line line"></div>
+		</div>
+		<div class="hours">
+			<div class="hours-line line"></div>
+		</div>
+		<div class="min">
+			<div class="min-line line"></div>
+		</div>
+		<div class="sec">
+			<div class="sec-line line"></div>
+		</div>
+	</div>
+
+	<div class="snowflakes" aria-hidden="true">
+		<div class="snowflake">
+		❅
+		</div>
+		<div class="snowflake">
+		❆
+		</div>
+		<div class="snowflake">
+		❅
+		</div>
+		<div class="snowflake">
+		❆
+		</div>
+		<div class="snowflake">
+		❅
+		</div>
+		<div class="snowflake">
+		❆
+		</div>
+		<div class="snowflake">
+		❅
+		</div>
+		<div class="snowflake">
+		❆
+		</div>
+		<div class="snowflake">
+		❅
+		</div>
+		<div class="snowflake">
+		❆
+		</div>
+		<div class="snowflake">
+		❅
+		</div>
+		<div class="snowflake">
+		❆
+		</div>
+	</div>
+	<div class="bottom"></div>
+
+	<!-- Scripts -->
+	<script type="text/javascript">
+		'use strinct'; //на всякий случай
+		var date = new Date();
+		const el_height = 150;
+		var current_day, current_hour, current_min, current_sec, current_year, current_month;
+		var days, hours, min, sec;
+		var rest_days, rest_hours, rest_min, rest_sec;
+
+		var months = [
+			31, //january [0]
+			28, //february [1]
+			31, //march [2]
+			30, //april [3]
+			31, //may [4]
+			30, //june [5]
+			31, //jule [6]
+			31, //august [7]
+			30, //september [8]
+			31, //october [9]
+			30, //november [10]
+			31 //december [11]
+		];
+
+		//creating a sec line
+		for (let i = 0; i < 60; i++) {
+			let sec = document.createElement('div');
+			sec.classList.add('sec-el');
+			sec.classList.add('el');
+			let txt = document.createElement('h1');
+			txt.classList.add('el-txt');
+			txt.textContent = i + ' секунд';
+			sec.appendChild(txt);
+			document.querySelector('.sec-line').appendChild(sec);
+		}
+
+		//creating a min line
+		for (let i = 0; i < 60; i++) {
+			let min = document.createElement('div');
+			min.classList.add('min-el');
+			min.classList.add('el');
+			let txt = document.createElement('h1');
+			txt.classList.add('el-txt');
+			txt.textContent = i + ' минут';
+			min.appendChild(txt);
+			document.querySelector('.min-line').appendChild(min);
+		}
+
+		//creating a hours line
+		for (let i = 0; i < 24; i++) {
+			let hours = document.createElement('div');
+			hours.classList.add('hours-el');
+			hours.classList.add('el');
+			let txt = document.createElement('h1');
+			txt.classList.add('el-txt');
+			txt.textContent = i + ' часов';
+			hours.appendChild(txt);
+			document.querySelector('.hours-line').appendChild(hours);
+		}
+
+		//creating a days line
+		for (let i = 0; i < 366 + 1; i++) {
+			let day = document.createElement('div');
+			day.classList.add('day-el');
+			day.classList.add('el');
+			let txt = document.createElement('h1');
+			txt.classList.add('el-txt');
+			txt.textContent = i + ' дней';
+			day.appendChild(txt);
+			document.querySelector('.days-line').appendChild(day);
+		}
+
+
+
+
+
+		function spin() {
+			date = new Date();
+			current_day = date.getDate();
+			current_hour = date.getHours();
+			current_min = date.getMinutes();
+			current_sec = date.getSeconds();
+			current_year = date.getFullYear();
+			current_month = date.getMonth();
+
+			// is leap this year?
+			if (current_year % 4 || !(current_year % 100) && current_year % 400) {
+				days = 366;
+				months[1] = 29;
+			} else {
+				days = 365;
+			};
+			let days_ar = document.querySelectorAll('.day-el');
+			// if (false) {
+			if (days_ar.length != days + 1) {
+				//creating a days line
+				for (let i = 0; i < days + 1; i++) {
+						let day = document.createElement('div');
+						day.classList.add('day-el');
+						day.classList.add('el');
+						let txt = document.createElement('h1');
+						txt.classList.add('el-txt');
+						txt.textContent = i + ' дней';
+						day.appendChild(txt);
+						document.querySelector('.days-line').appendChild(day);
+				}
+				console.log('new leap or not leap year');
+			}
+			hours = days * 24;
+			min = hours * 60;
+			sec = min * 60;
+
+			//rest days
+			{
+				let other = current_day;
+				for (let i = 0; i < current_month; i++) {
+						other += months[i];
+				}
+				rest_days = days - other;
+				// console.log(`rest days: ${rest_days}`);
+
+			}
+			//rest hours
+			{
+				rest_hours = 24 - current_hour - 1;
+				// console.log(`rest hours: ${rest_hours}`);
+			}
+			//rest min
+			{
+				rest_min = 60 - current_min - 1;
+				// console.log(`rest min: ${rest_min}`);
+			}
+			//rest sec
+			{
+				rest_sec = 60 - current_sec;
+				if (!current_sec) rest_sec = 0;
+				// console.log(`rest sec: ${rest_sec}`);
+			}
+
+			document.querySelector('.sec-line').style.top = `-${rest_sec * el_height}px`;
+			document.querySelector('.min-line').style.top = `-${rest_min * el_height}px`;
+			document.querySelector('.hours-line').style.top = `-${rest_hours * el_height}px`;
+			document.querySelector('.days-line').style.top = `-${rest_days * el_height}px`;
+
+		}
+
+		let inter = setInterval(spin, 100);
+
+		// document.querySelector('.sec-line').style.top = `-${rest_sec * el_height}px`;
+		// console.log(rest_sec);
+		// document.querySelector('.min-line').style.top = `-${rest_min * el_height}px`;
+		// document.querySelector('.hours-line').style.top = `-${rest_hours * el_height}px`;
+		// document.querySelector('.days-line').style.top = `-${rest_days * el_height}px`;
+	</script>
+</body>
+</html>
