@@ -383,16 +383,24 @@
 			current_month = date.getMonth();
 
 			// is leap this year?
-			if (current_year % 4 || !(current_year % 100) && current_year % 400) {
+			if (current_year % 4 === 0 || !(current_year % 100) && current_year % 400) {
 				days = 366;
 				months[1] = 29;
 			} else {
 				days = 365;
 			};
 			let days_ar = document.querySelectorAll('.day-el');
-			// if (false) {
+			// console.log(`length: ${days_ar.length}`);
+			// console.log(`days: ${days}`);
 			if (days_ar.length != days + 1) {
+				//deleting the days line
+				document.querySelector('.days-line').remove();
 				//creating a days line
+				let dline = document.createElement('div');
+				dline.classList.add('days-line');
+				dline.classList.add('line');
+				document.querySelector('.days').appendChild(dline);
+				//creating a days-line's children
 				for (let i = 0; i < days + 1; i++) {
 						let day = document.createElement('div');
 						day.classList.add('day-el');
@@ -403,7 +411,7 @@
 						day.appendChild(txt);
 						document.querySelector('.days-line').appendChild(day);
 				}
-				console.log('new leap or not leap year');
+				// console.log('new leap or not leap year');
 			}
 			hours = days * 24;
 			min = hours * 60;
